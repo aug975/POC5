@@ -66,8 +66,83 @@ Para o código interno em si, há uma estrutura padrão para componentes em Reac
 ```
 Introduzir o código com "use client" instrui nosso React a rodar o código no cliente acessando o servidor. Quando nosso código precisa de assistência server-side (e o servidor está configurado apropriadamente) podemos utilizar no lugar "use server". No entanto, isto normalmente não é necessário com componentes simples.
 
+> [!WARNING]
+> A linha "use client" sempre deve estar no topo do arquivo, na primeira linha, para que o interpretador saiba que todo o código deve ser executado daquela forma. Mesmo se houverem imports no código, este devem estar abaixo desta linha. Se esta instrução não for seguida, normalmente, o React/Next não irá compilar o código e retornará um build error. 
+
 A função principal, a qual podemos dar qualquer nome apropriado, sempre terá uma seção de retorno (return) dentro da qual iremos incluir o HTML que queremos construir com esse componente. Por padrão, toda vez que o componente for referenciado, ele irá retornar a estrutura HTML dentro de sua seção return. Este retorno pode ser aninhado ou condicional, contanto que esteja na função.
 
 Finalmente, é necessário marcar qual função do arquivo será exportada quando o componente for referenciado. O arquivo que criamos pode ter múltiplas funções, mas a função principal, que retorna a estrutura HTML que queremos exportar, deve ser marcada como a padrão com a linha "export default (nome da função)".
 
 Um exemplo de componente é o [Topbar](#componentes) utilizado neste repositório.
+
+```javascript
+"use client"
+import Link from "next/link"
+
+function Topbar() {
+  return (
+    <div className="topbar">
+      <Link href="/" className="botao">Home</Link>
+		  <Link href="/cachorros" className="botao">Cachorros</Link>
+      <Link href="/gatos" className="botao">Gatos</Link>
+      <Link href="/raposas" className="botao">Raposas</Link>
+    </div>
+  );
+}
+
+export default Topbar;
+```
+A estrutura HTML dentro do retorno da função é construída na página toda vez que o componente é referenciado. 
+
+Na função principal, podemos pedir parâmetros a serem incluidos quando o componente for referenciado. Para fazer isso, incluimos os nomes dos parâmetros dentro de chaves, nos parênteses da função principal. 
+```javascript
+function Componente({ parametro1, parametro2 }) {
+```
+#### Utilizando o componente
+Podemos chamar componentes dentro dos arquivos de página (page.js) do nosso aplicativo. Primeiro, devemos importar o componente (com o nome da função que exportamos) no nosso código. Normalmente, utiliza-se o [diretório relativo](https://www.lenovo.com/us/en/glossary/relative-path/) e não o absoluto. 
+```javascript
+// Supondo que a funcao que exportamos se chamava Componente()
+import Componente from '../components/componente';
+```
+Com o componente importado, simplesmente precisamos referenciar o componente com seu nome.
+```javascript
+import Component from '../components/component';
+
+export default function Home() {
+  return (
+    <div>
+      <Component/>
+    </div>
+  );
+}
+```
+Com isso, o código que o componente retorna será inserido no local do código onde o referenciamos. Se nosso componente tem parâmetros, podemos incluir seus valores na referência.
+```javascript
+  return (
+    <div>
+      <Component parametro1="literalmente" parametro2="1984"/>
+    </div>
+  );
+```
+Um exemplo de uso de componente é na página de cachorros deste repositório.
+```javascript
+import Topbar from '../../components/topbar';
+import ImgAnimal from '../../components/imganimal';
+
+export default function Home() {
+  return (
+    <div>
+      <div className="top">
+        <img className="webgraphic" src="https://64.media.tumblr.com/f3dc9788318ee2e9d7f1d8403908903d/eca8b10a97918538-c7/s75x75_c1/7cf334441ebb7c65b39a3a9c7f0f8223dec8aad8.gifv"/>
+        <h1 className="logo">Imagens de Cachorros</h1>
+        <img className="webgraphic" src="https://64.media.tumblr.com/a4684f5a22ac0fc2eab4dc9caf7e72be/a53559b838a1040c-fa/s75x75_c1/a53b4d601b0667f42bad5dedc71123d8241df901.gifv"/>
+      </div>
+      <Topbar/>
+      <ImgAnimal animal="cachorro"/>
+      <ImgAnimal animal="cachorro" number="2"/>
+      <ImgAnimal animal="cachorro" number="3"/>
+    </div>
+  );
+}
+```
+Após a inclusão da div "top", referencia-se o componente Topbar e três componentes ImgAnimal, cada um com parâmetros diferentes. Na página, isso gera o menu de navegação e três imagens de cachorro, nesta ordem.
