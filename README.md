@@ -17,13 +17,16 @@ Um deles será o arquivo [page.js](src/app/page.js), que contém o código que c
 Outro arquivo será chamado [layout.js](src/app/layout.js), e contém o código universal de estrutura HTML que é aplicado a todas as páginas do site. Ele também contém as linhas de metadata do site. Todo o HTML construído nos arquivos page.js será inserido dentro da parte central do HTML universal deste arquivo, na seção de código [{children}](https://github.com/aug975/POC5/blob/6960470ebe832662c98ec663598ffada2af25ec3/src/app/layout.js#L20).
 
 Haverá dois arquivos de tipo CSS. Um deles, [globals.css](src/app/globals.css), contém o código CSS universal do site, que será aplicado a todas as páginas. Este arquivo é normalmente utilizado para criar as variáveis universais de CSS que serão utilizadas nas páginas.
-O outro arquivo, [page.module.css](src/app/page.module.css)
-No aplicativo em si temos 3 pastas, com 2 arquivos em cada, e 4 arquivos na pasta raiz. 
+O outro arquivo, [page.module.css](src/app/page.module.css), contém o CSS que será aplicado somente à página home.
+
+Cada página adicional para qual se pode navegar no site é armazenada em uma nova pasta própria dentro da pasta app. De forma geral, cada uma destas subpastas irá conter um arquivo page.js, com o código JS/HTML individual da página, e um arquivo page.module.css, com o CSS individual da página.
+
+No aplicativo deste repositório em si temos 3 pastas, com 2 arquivos em cada, e 4 arquivos na pasta raiz. 
 
 Cada pasta representa uma das 3 páginas adicionais para quais se pode navegar no site. Cada pasta de página possui um arquivo page.js, que contém o código que constrói a página, e o arquivo page.module.css, que contém o código CSS específico da página. Na [página de cachorros](/src/app/cachorros), por exemplo, page.js importa todos os elementos necessários e constrói o HTML no retorno de uma função que exporta a estrutura, e page.module.css contém o código CSS que aplica customização e estilo apenas a essa página. 
 
 #### Componentes
-Estes são arquivos .js ou .jsx que contém, em essência, seções de código que serão utilizadas repetidamente no projeto. Em vez de repetir o código cada vez, podemos condensar o código em um componente nestes arquivos. Assim, podemos importar e facilmente chamar os componentes quando necessário. Estes arquivos podem ser mantidos em qualquer pasta estrutural do projeto, mas para melhor organização foram colocados em uma subpasta própria na pasta src.
+Estes são arquivos .js ou .jsx que contém, em essência, seções de código que serão utilizadas repetidamente no projeto. Em vez de repetir o código cada vez, podemos condensar o código em um componente nestes arquivos. Assim, podemos importar e facilmente chamar os componentes quando necessário. Normalmente, para melhor organização, são colocados em uma subpasta própria na pasta src.
 
 Nesta POC, temos três componentes. O [footer](/src/components/footer.jsx), que constrói a seção informativa que fica na parte inferior direita da página, o header ou [topbar](/src/components/topbar.jsx), que constrói o menu com botões para navegar o site, e o componente chamado [ImgAnimal](/src/components/imganimal.jsx), que insere as imagens de animais no site.
-Como são elementos utilizados várias vezes no código, foram condensados em componentes para serem inseridos facilmente em cada página.
+Como são alguns são elementos utilizados várias vezes no código, e para manter simplicidade de estrutura, foram condensados em componentes para serem inseridos facilmente em cada página.
