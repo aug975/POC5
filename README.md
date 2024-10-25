@@ -42,7 +42,6 @@ Nesta POC, temos três componentes:
 
 - O [footer](/src/components/footer.jsx), que constrói a seção informativa que fica na parte inferior direita da página.
 
-<a name="topbar"></a>
 - O header ou [topbar](/src/components/topbar.jsx), que constrói o menu com botões para navegar o site. 
 
 - O componente chamado [ImgAnimal](/src/components/imganimal.jsx), que insere as imagens de animais no site.
@@ -71,4 +70,4 @@ A função principal, a qual podemos dar qualquer nome apropriado, sempre terá 
 
 Finalmente, é necessário marcar qual função do arquivo será exportada quando o componente for referenciado. O arquivo que criamos pode ter múltiplas funções, mas a função principal, que retorna a estrutura HTML que queremos exportar, deve ser marcada como a padrão com a linha "export default (nome da função)".
 
-Um exemplo de componente é o [Topbar](#topbar) utilizado neste repositório.
+Um exemplo de componente é o [Topbar](https://github.com/aug975/POC5/tree/main?tab=readme-ov-file#componentes) utilizado neste repositório.
