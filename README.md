@@ -146,3 +146,27 @@ export default function Home() {
 }
 ```
 Após a inclusão da div "top", referencia-se o componente Topbar e três componentes ImgAnimal, cada um com parâmetros diferentes. Na página, isso gera o menu de navegação e três imagens de cachorro, nesta ordem.
+
+## Linguagem
+Este projeto é um aplicativo ReactJS. Portanto, utiliza uma mistura de HTML e JavaScript, com arquivos de CSS. Há arquivos adicionais que utilizam JSON.
+
+## Como executar
+Para executar este código, utilize a opção do GitHub que permite baixar o repositório em um arquivo compactado .zip.
+
+![Imagem mostrando onde está o botão](https://img001.prntscr.com/file/img001/Hxj8w1DnRRup_A-nl7s_4w.png)
+
+Quando o arquivo estiver baixado, extraia seu conteúdo em uma nova pasta ou uma pasta vazia. Confira que todos os itens do repositório estão na pasta resultante.
+
+> [!TIP]
+> Extrair o arquivo em uma pasta vazia ou nova garante que nenhum arquivo exterior irá impedir a execução do código ou atrapalhar seu funcionamento
+
+Primeiro, verifique se Node.js com o [npm](https://docs.npmjs.com/about-npm) está instalado em seu computador. Pode-se verificar isto abrindo o prompt de comando e executando "npm -v". Caso não esteja instalado, [há diversos processos simples para instalar os dois](https://nodejs.org/en/download/package-manager).
+
+Segundo, verifique que seu npm está atualizado. Pode-se atualizar o npm executando "npm install -g npm" no prompt de comando.
+
+Agora, precisamos instalar os módulos de node necessários. Para fazer isto, abra um terminal na pasta que contém a pasta src. O jeito mais simples de fazer isso em um sistema Windows é segurar Shift e clicar com o botão direito em uma área vazia da pasta, e selecionar "Abrir janela de comando aqui". Em outros sistemas, simplesmente abra um terminal e navegue para a pasta que contém a pasta src. Depois, execute o comando "npm install" e aguarde ter certeza que o processo está concluido. O npm irá instalar todos os módulos necessários para o projeto.
+
+Com os módulos instalados, execute no mesmo terminal o comando "npm run dev", e aguarde o terminal comunicar "Ready in (tempo)ms". Agora, o site está hosteado em um host local. O terminal mostrará a URL na linha "- Local:   http://localhost:3000". Mantenha este terminal aberto e abra um navegador, acessando a URL informada. A página do navegador irá mostrar o site, e o terminal irá mostrar erros e retornos do React enquando se navega o site.
+
+>[!NOTE]
+> A execução de "npm run dev" deve ser feita em um terminal toda vez que se for acessar o aplicativo.
