@@ -14,12 +14,22 @@ Em aplicativos padrões construídos desta forma, haverá 4 arquivos na pasta ra
 
 Um deles será o arquivo [page.js](src/app/page.js), que contém o código que constrói a página principal ou home. page.js importa todos os elementos necessários e constrói o HTML no retorno de uma função que exporta a estrutura.
 
-Outro arquivo será chamado [layout.js](src/app/layout.js), e contém o código universal de estrutura HTML que é aplicado a todas as páginas do site. Ele também contém as linhas de metadata do site. Todo o HTML construído nos arquivos page.js será inserido dentro da parte central do HTML universal deste arquivo, na seção de código [{children}](https://github.com/aug975/POC5/blob/6960470ebe832662c98ec663598ffada2af25ec3/src/app/layout.js#L20).
+Outro arquivo será chamado [layout.js](src/app/layout.js), e contém o código universal de estrutura HTML que é aplicado a todas as páginas do site. Ele também contém as linhas de metadata do site. Todo o HTML construído nos arquivos page.js será inserido dentro da parte central do HTML universal deste arquivo, na seção de código {children}.
+```javascript
+  return (
+    <html lang="en">
+      <body>
+        {children}
+      </body>
+    </html>
+  );
+```
 
 Haverá dois arquivos de tipo CSS. Um deles, [globals.css](src/app/globals.css), contém o código CSS universal do site, que será aplicado a todas as páginas. Este arquivo é normalmente utilizado para criar as variáveis universais de CSS que serão utilizadas nas páginas.
 O outro arquivo, [page.module.css](src/app/page.module.css), contém o CSS que será aplicado somente à página home.
 
-Cada página adicional para qual se pode navegar no site é armazenada em uma nova pasta própria dentro da pasta app. De forma geral, cada uma destas subpastas irá conter um arquivo page.js, com o código JS/HTML individual da página, e um arquivo page.module.css, com o CSS individual da página.
+>[!NOTE]
+> Cada página adicional para qual se pode navegar no site é armazenada em uma nova pasta própria dentro da pasta app. De forma geral, cada uma destas subpastas irá conter um arquivo page.js, com o código JS/HTML individual da página, e um arquivo page.module.css, com o CSS individual da página, que tem prioridade sobre o CSS universal.
 
 No aplicativo deste repositório em si temos 3 pastas, com 2 arquivos em cada, e 4 arquivos na pasta raiz. 
 
@@ -28,5 +38,37 @@ Cada pasta representa uma das 3 páginas adicionais para quais se pode navegar n
 #### Componentes
 Estes são arquivos .js ou .jsx que contém, em essência, seções de código que serão utilizadas repetidamente no projeto. Em vez de repetir o código cada vez, podemos condensar o código em um componente nestes arquivos. Assim, podemos importar e facilmente chamar os componentes quando necessário. Normalmente, para melhor organização, são colocados em uma subpasta própria na pasta src.
 
-Nesta POC, temos três componentes. O [footer](/src/components/footer.jsx), que constrói a seção informativa que fica na parte inferior direita da página, o header ou [topbar](/src/components/topbar.jsx), que constrói o menu com botões para navegar o site, e o componente chamado [ImgAnimal](/src/components/imganimal.jsx), que insere as imagens de animais no site.
+Nesta POC, temos três componentes: 
+
+- O [footer](/src/components/footer.jsx), que constrói a seção informativa que fica na parte inferior direita da página.
+
+<a name="topbar"></a>
+- O header ou [topbar](/src/components/topbar.jsx), que constrói o menu com botões para navegar o site. 
+
+- O componente chamado [ImgAnimal](/src/components/imganimal.jsx), que insere as imagens de animais no site.
+
 Como são alguns são elementos utilizados várias vezes no código, e para manter simplicidade de estrutura, foram condensados em componentes para serem inseridos facilmente em cada página.
+
+### Criando um componente
+Para criar um componente que será utilizado no projeto, deve-se primeiro criar seu arquivo no diretório de componentes. Normalmente, este diretório components fica na pasta src, sendo uma subpasta irmã da subpasta app.
+
+>[!NOTE]
+> Normalmente, componentes em React possuem em seu código um pouco de JavaScript e um pouco de HTML interno no retorno da função de exportação. No entanto, essa combinação só funcionará totalmente se o arquivo for criado com uma extensão .jsx. A extensão normal de JS (.js) não suporta de forma geral o HTML interno utilizado em React. Portanto, criamos nosso arquivo com um nome do tipo "exemplo.jsx".
+
+Para o código interno em si, há uma estrutura padrão para componentes em React.
+```javascript
+    "use client"
+    function Componente() {
+      return (
+        
+      );
+    }
+    export default Componente;
+```
+Introduzir o código com "use client" instrui nosso React a rodar o código no cliente acessando o servidor. Quando nosso código precisa de assistência server-side (e o servidor está configurado apropriadamente) podemos utilizar no lugar "use server". No entanto, isto normalmente não é necessário com componentes simples.
+
+A função principal, a qual podemos dar qualquer nome apropriado, sempre terá uma seção de retorno (return) dentro da qual iremos incluir o HTML que queremos construir com esse componente. Por padrão, toda vez que o componente for referenciado, ele irá retornar a estrutura HTML dentro de sua seção return. Este retorno pode ser aninhado ou condicional, contanto que esteja na função.
+
+Finalmente, é necessário marcar qual função do arquivo será exportada quando o componente for referenciado. O arquivo que criamos pode ter múltiplas funções, mas a função principal, que retorna a estrutura HTML que queremos exportar, deve ser marcada como a padrão com a linha "export default (nome da função)".
+
+Um exemplo de componente é o [Topbar](#topbar) utilizado neste repositório.
