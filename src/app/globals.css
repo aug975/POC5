@@ -1,0 +1,81 @@
+/* este arquivo tem as configuracoes CSS que se aplicam universalmente a todas as paginas do site */
+
+.logo, .footer, h1, h3 {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding:1%;
+}
+
+.logo {
+  animation: color-change 1s infinite;
+}
+
+:root {
+  --background-color: #ffffff;
+}
+
+.top {
+  display:flex;
+  align-items: center;
+  background-color: #eaeaea;
+}
+
+img {
+  border-style: ridge;
+  width:  500px;
+  height: 500px;
+  object-fit: cover;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.webgraphic {
+  border-style: none;
+  width:  50px;
+  height: 50px;
+  box-shadow: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #3b3b3b;
+  }
+}
+
+.topbar {
+  background-color: #a3a3a3;
+  overflow: hidden;
+  padding-left: 2%;
+}
+
+.botao {
+  float: left;
+  border-style: solid;
+  color: #595353;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.footer {
+  background-color: #a3a3a3;
+  padding:2%;
+  position:fixed;
+  bottom:20px;
+  right:0px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .topbar, .footer, .logo, .top, h3{
+    filter: invert();
+  }
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+@keyframes color-change {
+  0% { color: red; }
+  50% { color: rgb(9, 255, 0); }
+  100% { color: rgb(4, 0, 255); }
+}
