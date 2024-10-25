@@ -70,4 +70,4 @@ A função principal, a qual podemos dar qualquer nome apropriado, sempre terá 
 
 Finalmente, é necessário marcar qual função do arquivo será exportada quando o componente for referenciado. O arquivo que criamos pode ter múltiplas funções, mas a função principal, que retorna a estrutura HTML que queremos exportar, deve ser marcada como a padrão com a linha "export default (nome da função)".
 
-Um exemplo de componente é o [Topbar](https://github.com/aug975/POC5/tree/main?tab=readme-ov-file#componentes) utilizado neste repositório.
+Um exemplo de componente é o [Topbar](#componentes) utilizado neste repositório.
